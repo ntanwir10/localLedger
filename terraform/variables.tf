@@ -1,31 +1,13 @@
 variable "location" {
   description = "Azure region to deploy resources in"
   type        = string
-  default     = "East US"
+  default     = "eastus2"
 }
 
 variable "app_name" {
   description = "Base name for all resources"
   type        = string
-  default     = "localledger"
-}
-
-variable "b2c_location" {
-  description = "Azure AD B2C tenant location"
-  type        = string
-  default     = "United States"
-}
-
-variable "b2c_country_code" {
-  description = "Country code for B2C tenant"
-  type        = string
-  default     = "US"
-}
-
-variable "b2c_sku" {
-  description = "SKU for Azure AD B2C"
-  type        = string
-  default     = "PremiumP1"
+  default     = "ledger"
 }
 
 variable "cosmos_db_consistency_level" {
@@ -94,19 +76,39 @@ variable "function_app_runtime_settings" {
   default     = {}
 }
 
-variable "b2c_client_id" {
-  description = "The client ID for Azure AD B2C authentication"
-  type        = string
-}
-
 variable "enable_auth" {
   description = "Enable authentication for the Function App"
   type        = bool
   default     = false
 }
 
-variable "enable_b2c" {
-  description = "Enable creation of Azure AD B2C tenant"
-  type        = bool
-  default     = false
+variable "entra_tenant_id" {
+  description = "Microsoft Entra tenant ID"
+  type        = string
+  default     = ""
+}
+
+variable "entra_client_id" {
+  description = "Microsoft Entra application (client) ID"
+  type        = string
+  default     = ""
+}
+
+variable "entra_client_secret" {
+  description = "Microsoft Entra application client secret"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "entra_allowed_audiences" {
+  description = "List of allowed token audiences for Microsoft Entra"
+  type        = list(string)
+  default     = []
+}
+
+variable "entra_issuer_url" {
+  description = "Microsoft Entra token issuer URL"
+  type        = string
+  default     = ""
 }
